@@ -5,14 +5,6 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import Lenis from "lenis"
 
-// Utility to detect mobile/touch devices
-const isMobileDevice = () => {
-  if (typeof window === 'undefined') return false
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    ('ontouchstart' in window) ||
-    (navigator.maxTouchPoints > 0)
-}
-
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
   const [mounted, setMounted] = useState(false)
@@ -24,13 +16,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (!mounted) return
 
-    // Skip smooth scroll on mobile devices for better performance
-    const isMobile = isMobileDevice()
-    if (isMobile) {
-      return // Use native scroll on mobile
-    }
-
-    // Initialize Lenis smooth scroll only on desktop
+    // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.0,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

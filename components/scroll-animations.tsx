@@ -6,40 +6,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Utility to detect mobile devices
-const isMobileDevice = () => {
-  if (typeof window === 'undefined') return false
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-    ('ontouchstart' in window) ||
-    (navigator.maxTouchPoints > 0)
-}
-
 export default function ScrollAnimations() {
   const [mounted, setMounted] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const scrollTriggersRef = useRef<ScrollTrigger[]>([])
   const observerRef = useRef<MutationObserver | null>(null)
 
   useEffect(() => {
     setMounted(true)
-    setIsMobile(isMobileDevice())
   }, [])
 
   const initializeScrollTriggers = () => {
     // Clear existing ScrollTriggers
     scrollTriggersRef.current.forEach(trigger => trigger.kill())
     scrollTriggersRef.current = []
-
-    // Use lighter animations on mobile
-    const mobileConfig = isMobile ? {
-      scrub: 2, // Increased scrub for smoother mobile performance
-      yOffset: 50, // Reduced movement
-      skipParallax: true // Skip heavy parallax effects
-    } : {
-      scrub: 1,
-      yOffset: 100,
-      skipParallax: false
-    }
 
     // Animate section titles on scroll
     gsap.utils.toArray<HTMLElement>(".section-title").forEach((title) => {
@@ -48,11 +27,11 @@ export default function ScrollAnimations() {
           trigger: title,
           start: "top 80%",
           end: "top 50%",
-          scrub: mobileConfig.scrub,
+          scrub: 1,
         },
         opacity: 0,
-        y: mobileConfig.yOffset,
-        scale: isMobile ? 0.9 : 0.8, // Less dramatic scale on mobile
+        y: 100,
+        scale: 0.8,
       })
       if (tl.scrollTrigger) {
         scrollTriggersRef.current.push(tl.scrollTrigger)
@@ -78,34 +57,32 @@ export default function ScrollAnimations() {
           trigger: card,
           start: "top 85%",
           end: "top 60%",
-          scrub: mobileConfig.scrub,
+          scrub: 1,
         },
         opacity: 0,
-        y: mobileConfig.yOffset * 0.8,
-        rotateX: isMobile ? 0 : -15, // Skip 3D rotation on mobile
+        y: 80,
+        rotateX: -15,
       })
       if (tl.scrollTrigger) {
         scrollTriggersRef.current.push(tl.scrollTrigger)
       }
     })
 
-    // Parallax effect for backgrounds - skip on mobile for better performance
-    if (!mobileConfig.skipParallax) {
-      gsap.utils.toArray<HTMLElement>(".parallax-bg").forEach((bg) => {
-        const tl = gsap.to(bg, {
-          scrollTrigger: {
-            trigger: bg,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-          y: (i, target) => -ScrollTrigger.maxScroll(window) * parseFloat((target as HTMLElement).dataset.speed || "0.5"),
-        })
-        if (tl.scrollTrigger) {
-          scrollTriggersRef.current.push(tl.scrollTrigger)
-        }
+    // Parallax effect for backgrounds
+    gsap.utils.toArray<HTMLElement>(".parallax-bg").forEach((bg) => {
+      const tl = gsap.to(bg, {
+        scrollTrigger: {
+          trigger: bg,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+        y: (i, target) => -ScrollTrigger.maxScroll(window) * parseFloat((target as HTMLElement).dataset.speed || "0.5"),
       })
-    }
+      if (tl.scrollTrigger) {
+        scrollTriggersRef.current.push(tl.scrollTrigger)
+      }
+    })
 
     // Skill bars animation (skip bars already handled by Framer Motion)
     gsap.utils.toArray<HTMLElement>(".skill-bar").forEach((bar) => {
@@ -127,7 +104,7 @@ export default function ScrollAnimations() {
           trigger: bar,
           start: "top 80%",
           end: "top 50%",
-          scrub: mobileConfig.scrub,
+          scrub: 1,
         },
         width: "0%",
       })
@@ -153,10 +130,10 @@ export default function ScrollAnimations() {
           trigger: item,
           start: "top 85%",
           end: "top 60%",
-          scrub: mobileConfig.scrub,
+          scrub: 1,
         },
         opacity: 0,
-        x: isMobile ? (index % 2 === 0 ? -50 : 50) : (index % 2 === 0 ? -100 : 100), // Reduced movement on mobile
+        x: index % 2 === 0 ? -100 : 100,
       })
       if (tl.scrollTrigger) {
         scrollTriggersRef.current.push(tl.scrollTrigger)
@@ -216,7 +193,7 @@ export default function ScrollAnimations() {
       scrollTriggersRef.current.forEach(trigger => trigger.kill())
       scrollTriggersRef.current = []
     }
-  }, [mounted, isMobile])
+  }, [mounted])
 
   if (!mounted) return null
 
