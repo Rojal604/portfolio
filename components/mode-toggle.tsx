@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 export function ModeToggle() {
     const { setTheme, theme } = useTheme()
 
-    const toggleTheme = async () => {
+    const toggleTheme = async (e: React.MouseEvent<HTMLButtonElement>) => {
         const isDark = theme === "dark"
         const nextTheme = isDark ? "light" : "dark"
 
@@ -18,6 +18,14 @@ export function ModeToggle() {
             return
         }
 
+        const x = e.clientX
+        const y = e.clientY
+
+        const endRadius = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        )
+
         // @ts-ignore
         const transition = document.startViewTransition(() => {
             setTheme(nextTheme)
@@ -25,10 +33,6 @@ export function ModeToggle() {
 
         // @ts-ignore
         await transition.ready
-
-        const x = window.innerWidth / 2
-        const y = window.innerHeight / 2
-        const endRadius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
 
         document.documentElement.animate(
             {
