@@ -47,7 +47,7 @@ export const TextReveal = ({ text, className, delay = 0 }: TextRevealProps) => {
             variants={container}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className={cn(className)}
             suppressHydrationWarning
         >

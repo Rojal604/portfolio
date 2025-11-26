@@ -1,21 +1,25 @@
 "use client"
 
 import type React from "react"
-
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface RevealOnScrollProps {
   children: React.ReactNode
   delay?: number
   direction?: "up" | "down" | "left" | "right"
   className?: string
+  once?: boolean
+  margin?: string
 }
 
-export default function RevealOnScroll({ children, delay = 0, direction = "up", className = "" }: RevealOnScrollProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, margin: "-100px" })
-
+export default function RevealOnScroll({
+  children,
+  delay = 0,
+  direction = "up",
+  className = "",
+  once = false,
+  margin = "0px",
+}: RevealOnScrollProps) {
   const directions = {
     up: { y: 50 },
     down: { y: -50 },
@@ -25,9 +29,13 @@ export default function RevealOnScroll({ children, delay = 0, direction = "up", 
 
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, ...directions[direction] }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...directions[direction] }}
+      variants={{
+        hidden: { opacity: 0, ...directions[direction] },
+        visible: { opacity: 1, x: 0, y: 0 },
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, margin: margin as any, amount: 0.1 }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
       className={className}
     >

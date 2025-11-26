@@ -33,7 +33,7 @@ export default function HeroScene() {
   })
 
   // Create particles with better distribution
-  const particlesCount = 2000
+  const particlesCount = 1500
   const positions = useMemo(() => {
     const pos = new Float32Array(particlesCount * 3)
     for (let i = 0; i < particlesCount * 3; i += 3) {
@@ -60,7 +60,7 @@ export default function HeroScene() {
 
       {/* Main distorted sphere with enhanced material */}
       <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-        <Sphere ref={sphereRef} args={[1.5, 128, 128]} position={[0, 0, 0]} castShadow>
+        <Sphere ref={sphereRef} args={[1.5, 64, 64]} position={[0, 0, 0]} castShadow>
           <MeshDistortMaterial
             color="#8b5cf6"
             attach="material"

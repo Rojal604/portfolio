@@ -14,42 +14,13 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-background perspective-1000">
-      {/* Premium Background Effects */}
-      <div className="absolute inset-0 z-0" suppressHydrationWarning>
-        <FloatingShapes />
-
-        {/* Dynamic Aurora Effect */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-            rotate: [0, 45, 0]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-primary/20 rounded-full blur-[120px] mix-blend-screen"
-          suppressHydrationWarning
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.4, 0.2],
-            x: [0, -50, 0]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-accent/10 rounded-full blur-[120px] mix-blend-screen"
-          suppressHydrationWarning
-        />
-
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(0.5_0.1_260/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.5_0.1_260/0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" suppressHydrationWarning />
-      </div>
-
+    <section id="hero" className="relative h-screen w-full overflow-hidden flex items-center justify-center perspective-1000 dark:bg-background">
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center" suppressHydrationWarning>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-6 sm:mb-8"
           suppressHydrationWarning
@@ -79,7 +50,8 @@ export default function Hero() {
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 1 }}
           className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed font-light px-4"
         >
@@ -90,7 +62,8 @@ export default function Hero() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-stretch sm:items-center w-full sm:w-auto px-4 sm:px-0"
           suppressHydrationWarning
@@ -114,7 +87,8 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         suppressHydrationWarning

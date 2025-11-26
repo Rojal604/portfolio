@@ -113,8 +113,18 @@ export default function ScrollAnimations() {
       }
     })
 
-    // Timeline items animation
+    // Timeline items animation (skip ones already handled by Framer Motion)
     gsap.utils.toArray<HTMLElement>(".timeline-item").forEach((item, index) => {
+      const isFramerMotionAnimated =
+        item.closest("[data-framer-motion]") ||
+        item.closest(".motion-div") ||
+        item.parentElement?.classList.contains("motion-div") ||
+        item.parentElement?.closest("[data-framer-motion]")
+
+      if (isFramerMotionAnimated) {
+        return
+      }
+
       const tl = gsap.from(item, {
         scrollTrigger: {
           trigger: item,

@@ -51,8 +51,10 @@ export const GlowCard = ({
         }
     }
 
+    const Component = enableTilt ? motion.div : "div"
+
     return (
-        <motion.div
+        <Component
             ref={ref}
             className={cn(
                 "group relative border border-border bg-card text-card-foreground overflow-hidden rounded-xl",
@@ -60,11 +62,11 @@ export const GlowCard = ({
             )}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            style={{
+            style={enableTilt ? {
                 transformStyle: "preserve-3d",
-                rotateX: enableTilt ? rotateX : 0,
-                rotateY: enableTilt ? rotateY : 0,
-            }}
+                rotateX,
+                rotateY,
+            } : undefined}
         >
             {/* Main spotlight effect */}
             <motion.div
@@ -93,6 +95,6 @@ export const GlowCard = ({
                 }}
             />
             <div className="relative h-full transform-style-3d">{children}</div>
-        </motion.div>
+        </Component>
     )
 }

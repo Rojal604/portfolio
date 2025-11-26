@@ -107,7 +107,7 @@ export default function Navigation() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-20 sm:pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-20 sm:pt-24 px-6 md:hidden transition-colors duration-500 ease-in-out"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item, index) => (

@@ -12,10 +12,10 @@ interface MagneticButtonProps {
 }
 
 export default function MagneticButton({ children, className = "", onClick }: MagneticButtonProps) {
-  const ref = useRef<HTMLButtonElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
-  const handleMouse = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY } = e
     const { width, height, left, top } = e.currentTarget.getBoundingClientRect()
     const x = (clientX - (left + width / 2)) * 0.3
@@ -28,7 +28,7 @@ export default function MagneticButton({ children, className = "", onClick }: Ma
   }
 
   return (
-    <motion.button
+    <motion.div
       ref={ref}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
@@ -39,6 +39,6 @@ export default function MagneticButton({ children, className = "", onClick }: Ma
       suppressHydrationWarning
     >
       {children}
-    </motion.button>
+    </motion.div>
   )
 }

@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Cinematic 3D Portfolio",
   description: "An immersive 3D portfolio showcasing programming skills through cutting-edge web experiences",
-  generator: 'v0.app',
+
 }
 
 export const viewport: Viewport = {

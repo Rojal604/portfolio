@@ -5,6 +5,7 @@ import ScrollAnimations from "@/components/scroll-animations"
 import Navigation from "@/components/navigation"
 import SmoothScroll from "@/components/smooth-scroll"
 import LoadingScreen from "@/components/loading-screen"
+import { SectionBackground } from "@/components/ui/section-background"
 import { use3DStore } from "@/lib/use-3d-store"
 
 const About = lazy(() => import("@/components/sections/about"))
@@ -38,7 +39,7 @@ export default function Home() {
     // Preload fonts
     if ("fonts" in document) {
       document.fonts.ready.then(() => {
-        console.log("[v0] Fonts loaded")
+        console.log("Fonts loaded")
       })
     }
   }, [])
@@ -49,6 +50,12 @@ export default function Home() {
       <SmoothScroll>
         <ScrollAnimations />
         <Navigation />
+
+        {/* Global Fixed Background (Light Mode Only) */}
+        <div className="fixed inset-0 -z-50 dark:hidden" suppressHydrationWarning>
+          <SectionBackground />
+        </div>
+
         <main className="relative w-full">
           <Hero />
           <Suspense
