@@ -161,10 +161,6 @@
       radial-gradient(circle at 50% 100%, var(--gradient-4) 0%, transparent 70%);
     background-attachment: fixed;
     overflow-x: hidden;
-
-    @media (max-width: 768px) {
-      background-attachment: scroll;
-    }
   }
 
   ::-webkit-scrollbar {
@@ -196,16 +192,6 @@
 
   .glass-card {
     @apply bg-card backdrop-blur-md border border-white/5 shadow-2xl;
-  }
-
-  @media (max-width: 768px) {
-    .glass {
-      @apply backdrop-blur-sm;
-    }
-
-    .glass-card {
-      @apply backdrop-blur-sm;
-    }
   }
 
   .text-gradient {
