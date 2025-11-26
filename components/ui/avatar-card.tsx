@@ -16,6 +16,7 @@ interface AvatarCardProps {
     showTooltip?: boolean
     overlayContent?: React.ReactNode
     displayOverlayContent?: boolean
+    disableTilt?: boolean
 }
 
 export default function AvatarCard({
@@ -31,7 +32,8 @@ export default function AvatarCard({
     showMobileWarning = true,
     showTooltip = true,
     overlayContent = null,
-    displayOverlayContent = false
+    displayOverlayContent = false,
+    disableTilt = false
 }: AvatarCardProps) {
     const ref = useRef<HTMLDivElement>(null)
     const [rotateX, setRotateX] = useState(0)
@@ -41,7 +43,7 @@ export default function AvatarCard({
     const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, rotate: 0 })
 
     function handleMouse(e: React.MouseEvent<HTMLDivElement>) {
-        if (!ref.current) return
+        if (!ref.current || disableTilt) return
 
         const rect = ref.current.getBoundingClientRect()
         const offsetX = e.clientX - rect.left - rect.width / 2
@@ -68,8 +70,10 @@ export default function AvatarCard({
     function handleMouseLeave() {
         setOpacity(0)
         setScale(1)
-        setRotateX(0)
-        setRotateY(0)
+        if (!disableTilt) {
+            setRotateX(0)
+            setRotateY(0)
+        }
     }
 
     return (

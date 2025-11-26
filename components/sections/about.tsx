@@ -7,16 +7,18 @@ import { Code2, Rocket, Sparkles, Zap } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import BlurText from "@/components/ui/blur-text"
 import { getAssetPath } from "@/lib/utils"
+import { useIsMobile } from "@/components/ui/use-mobile"
 
 export default function About() {
+  const isMobile = useIsMobile()
   const containerRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   })
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [100, -100])
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], isMobile ? [1, 1, 1, 1] : [0, 1, 1, 0])
 
   const highlights = [
     {
@@ -165,6 +167,7 @@ export default function About() {
               rotateAmplitude={15}
               showMobileWarning={false}
               showTooltip={true}
+              disableTilt={isMobile}
             />
           </motion.div>
         </div>
