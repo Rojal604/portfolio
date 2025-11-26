@@ -146,25 +146,6 @@
 
   html {
     @apply w-full;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-  }
-
-  body {
-    @apply bg-background text-foreground w-full font-sans antialiased transition-colors duration-500 ease-in-out;
-    /* Premium Noise + Aurora Gradient Mesh */
-    background-image:
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-      radial-gradient(circle at 50% 0%, var(--gradient-1) 0%, transparent 70%),
-      radial-gradient(circle at 85% 30%, var(--gradient-2) 0%, transparent 60%),
-      radial-gradient(circle at 15% 60%, var(--gradient-3) 0%, transparent 60%),
-      radial-gradient(circle at 50% 100%, var(--gradient-4) 0%, transparent 70%);
-    background-attachment: scroll;
-    overflow-x: hidden;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
