@@ -159,7 +159,7 @@
       radial-gradient(circle at 85% 30%, var(--gradient-2) 0%, transparent 60%),
       radial-gradient(circle at 15% 60%, var(--gradient-3) 0%, transparent 60%),
       radial-gradient(circle at 50% 100%, var(--gradient-4) 0%, transparent 70%);
-    background-attachment: fixed;
+    background-attachment: scroll;
     overflow-x: hidden;
   }
 

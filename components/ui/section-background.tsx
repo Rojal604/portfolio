@@ -16,7 +16,7 @@ export function SectionBackground() {
                     rotate: [0, 45, 0]
                 }}
                 transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-primary/20 rounded-full blur-[120px] mix-blend-screen"
+                className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-primary/20 rounded-full blur-[80px] mix-blend-screen will-change-transform"
                 suppressHydrationWarning
             />
             <motion.div
@@ -26,7 +26,7 @@ export function SectionBackground() {
                     x: [0, -50, 0]
                 }}
                 transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-accent/10 rounded-full blur-[120px] mix-blend-screen"
+                className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] bg-accent/10 rounded-full blur-[80px] mix-blend-screen will-change-transform"
                 suppressHydrationWarning
             />
 

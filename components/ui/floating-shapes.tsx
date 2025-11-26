@@ -20,7 +20,7 @@ export const FloatingShapes = () => {
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}
-                className="absolute top-[15%] left-[10%] w-32 h-32 md:w-64 md:h-64 rounded-full border border-primary/10 bg-primary/5 blur-2xl"
+                className="absolute top-[15%] left-[10%] w-32 h-32 md:w-64 md:h-64 rounded-full border border-primary/10 bg-primary/5 blur-xl will-change-transform"
                 suppressHydrationWarning
             />
 
@@ -37,7 +37,7 @@ export const FloatingShapes = () => {
                     ease: "easeInOut",
                     delay: 1,
                 }}
-                className="absolute bottom-[20%] right-[5%] w-40 h-40 md:w-80 md:h-80 rounded-full border border-secondary/10 bg-secondary/5 blur-3xl"
+                className="absolute bottom-[20%] right-[5%] w-40 h-40 md:w-80 md:h-80 rounded-full border border-secondary/10 bg-secondary/5 blur-2xl will-change-transform"
                 suppressHydrationWarning
             />
 
@@ -54,7 +54,7 @@ export const FloatingShapes = () => {
                     ease: "easeInOut",
                     delay: 2,
                 }}
-                className="absolute top-[40%] right-[15%] w-20 h-20 md:w-40 md:h-40 border border-accent/10 bg-accent/5 blur-xl rotate-45"
+                className="absolute top-[40%] right-[15%] w-20 h-20 md:w-40 md:h-40 border border-accent/10 bg-accent/5 blur-lg rotate-45 will-change-transform"
                 suppressHydrationWarning
             />
 
@@ -69,7 +69,7 @@ export const FloatingShapes = () => {
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                className="absolute bottom-[10%] left-[20%] w-16 h-16 md:w-32 md:h-32 bg-muted-foreground/5 blur-lg"
+                className="absolute bottom-[10%] left-[20%] w-16 h-16 md:w-32 md:h-32 bg-muted-foreground/5 blur-md will-change-transform"
                 style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
                 suppressHydrationWarning
             />
