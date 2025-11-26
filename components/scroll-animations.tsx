@@ -20,6 +20,9 @@ export default function ScrollAnimations() {
     scrollTriggersRef.current.forEach(trigger => trigger.kill())
     scrollTriggersRef.current = []
 
+    // Skip GSAP animations on mobile for performance
+    if (window.innerWidth < 768) return
+
     // Animate section titles on scroll
     gsap.utils.toArray<HTMLElement>(".section-title").forEach((title) => {
       const tl = gsap.from(title, {
