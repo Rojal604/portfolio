@@ -102,11 +102,11 @@ export default function About() {
                   transition={{ delay: 0.5, duration: 0.5 }}
                   className="text-primary font-semibold relative inline-block"
                 >
-                  immersive 3D web experiences
+                  Immersive 3D web experiences
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary/50 rounded-full"></span>
                 </motion.span>
                 <AnimatedText
-                  text=". My expertise lies in combining cutting-edge technologies like Three.js, React, and Next.js to build performant and visually stunning applications."
+                  text=". My expertise lies in combining cutting-edge technologies like modern frameworks, React, and Next.js to build performant and visually stunning applications."
                   className="inline"
                   inline
                   delay={0.6}

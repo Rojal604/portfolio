@@ -15,6 +15,15 @@ export default function Projects() {
   // Handle browser back button for modal
   useEffect(() => {
     if (selectedProject !== null) {
+      // Add class to hide navigation
+      document.body.classList.add('modal-open')
+
+      // Lock body scroll - save current scroll position
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+
       // Push a new history state when modal opens
       window.history.pushState({ modalOpen: true }, "")
 
@@ -25,6 +34,19 @@ export default function Projects() {
       window.addEventListener("popstate", handlePopState)
 
       return () => {
+        // Remove class to show navigation
+        document.body.classList.remove('modal-open')
+
+        // Restore body scroll
+        const scrollY = document.body.style.top
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+        window.scrollTo({
+          top: parseInt(scrollY || '0') * -1,
+          behavior: 'instant'
+        })
+
         window.removeEventListener("popstate", handlePopState)
       }
     }

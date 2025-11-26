@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Space_Grotesk, DM_Sans } from "next/font/google"
 import "./globals.css"
+import "./modal.css"
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -19,7 +20,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Cinematic 3D Portfolio",
-  description: "An immersive 3D portfolio showcasing programming skills through cutting-edge web experiences",
+  description: "An Immersive 3D portfolio showcasing programming skills through cutting-edge web experiences",
 
 }
 

@@ -1,0 +1,4 @@
+/* Hide navigation when project modal is open */
+body.modal-open nav {
+    display: none !important;
+}
