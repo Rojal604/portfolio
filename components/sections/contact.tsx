@@ -109,7 +109,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative min-h-screen py-20 sm:py-28 lg:py-32 px-4 sm:px-6 overflow-hidden dark:bg-gradient-to-b dark:from-gray-900 dark:via-[#0b0b0f] dark:to-black">
+    <section id="contact" className="relative min-h-screen py-20 sm:py-28 lg:py-32 px-4 sm:px-6 overflow-hidden bg-background dark:bg-gradient-to-b dark:from-gray-900 dark:via-[#0b0b0f] dark:to-black">
 
 
       <div className="max-w-7xl mx-auto relative z-10">

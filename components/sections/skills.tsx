@@ -33,7 +33,7 @@ export default function Skills() {
   ]
 
   return (
-    <section id="skills" className="sticky top-0 min-h-screen relative py-32 px-4 overflow-hidden transition-colors duration-500 dark:bg-gradient-to-b dark:from-black dark:via-[#0b0b0f] dark:to-gray-900">
+    <section id="skills" className="sticky top-0 min-h-screen relative py-32 px-4 overflow-hidden transition-colors duration-500 bg-background dark:bg-gradient-to-b dark:from-black dark:via-[#0b0b0f] dark:to-gray-900">
 
 
       <div className="max-w-7xl mx-auto relative z-10">

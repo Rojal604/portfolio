@@ -72,7 +72,7 @@ export default function Projects() {
   }
 
   return (
-    <section id="projects" className="sticky top-0 min-h-screen relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6 overflow-hidden dark:bg-gradient-to-b dark:from-gray-900 dark:via-[#0b0b0f] dark:to-black">
+    <section id="projects" className="sticky top-0 min-h-screen relative py-20 sm:py-28 lg:py-32 px-4 sm:px-6 overflow-hidden bg-background dark:bg-gradient-to-b dark:from-gray-900 dark:via-[#0b0b0f] dark:to-black">
 
       <div
         className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-20 -z-20 hidden dark:block"

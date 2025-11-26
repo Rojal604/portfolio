@@ -66,7 +66,7 @@ export default function Experience() {
   ]
 
   return (
-    <section id="experience" className="sticky top-0 relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 overflow-hidden dark:bg-gradient-to-b dark:from-black dark:via-[#0b0b0f] dark:to-gray-900">
+    <section id="experience" className="sticky top-0 relative min-h-screen py-16 sm:py-20 px-4 sm:px-6 overflow-hidden bg-background dark:bg-gradient-to-b dark:from-black dark:via-[#0b0b0f] dark:to-gray-900">
 
 
       <div className="max-w-5xl mx-auto">
