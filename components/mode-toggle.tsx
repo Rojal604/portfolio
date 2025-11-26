@@ -5,6 +5,14 @@ import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
 
+// Utility to detect mobile devices
+const isMobileDevice = () => {
+    if (typeof window === 'undefined') return false
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+        ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0)
+}
+
 export function ModeToggle() {
     const { setTheme, theme } = useTheme()
 
@@ -18,10 +26,18 @@ export function ModeToggle() {
             return
         }
 
+        // Skip expensive animation on mobile devices for better performance
+        const isMobile = isMobileDevice()
+
         // @ts-ignore
         const transition = document.startViewTransition(() => {
             setTheme(nextTheme)
         })
+
+        // Skip circular reveal animation on mobile
+        if (isMobile) {
+            return
+        }
 
         // @ts-ignore
         await transition.ready
@@ -38,7 +54,7 @@ export function ModeToggle() {
                 ],
             },
             {
-                duration: 700,
+                duration: 400, // Reduced from 700ms for faster animation
                 easing: "ease-in-out",
                 // Specify which pseudo-element to animate
                 pseudoElement: "::view-transition-new(root)",
