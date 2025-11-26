@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 import RevealOnScroll from "@/components/reveal-on-scroll"
@@ -11,6 +11,24 @@ import { getAssetPath } from "@/lib/utils"
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
+
+  // Handle browser back button for modal
+  useEffect(() => {
+    if (selectedProject !== null) {
+      // Push a new history state when modal opens
+      window.history.pushState({ modalOpen: true }, "")
+
+      const handlePopState = () => {
+        setSelectedProject(null)
+      }
+
+      window.addEventListener("popstate", handlePopState)
+
+      return () => {
+        window.removeEventListener("popstate", handlePopState)
+      }
+    }
+  }, [selectedProject])
   const [currentPage, setCurrentPage] = useState(0)
   const isMobile = useIsMobile()
   const projectsPerPage = 3
@@ -227,17 +245,25 @@ export default function Projects() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent lg:bg-gradient-to-r" />
                   </div>
 
+                  {/* Close Button - Moved to be direct child of modal content for better positioning */}
+                  <button
+                    onClick={() => {
+                      setSelectedProject(null)
+                      // Go back in history if we pushed a state
+                      if (window.history.state?.modalOpen) {
+                        window.history.back()
+                      }
+                    }}
+                    className="absolute top-4 right-4 z-50 p-2 bg-black/50 backdrop-blur-md text-white rounded-full hover:bg-black/70 transition-colors border border-white/10"
+                    aria-label="Close modal"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+
                   <div className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
-                    <button
-                      onClick={() => setSelectedProject(null)}
-                      className="absolute top-3 right-3 sm:top-4 sm:right-4 lg:top-8 lg:right-8 p-2 hover:bg-muted/50 rounded-full transition-colors z-10 min-h-[44px] min-w-[44px] flex items-center justify-center"
-                      aria-label="Close modal"
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg>
-                    </button>
 
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gradient">
                       {projects[selectedProject].title}
