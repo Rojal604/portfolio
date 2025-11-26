@@ -102,7 +102,7 @@ function SkillCard({ skill, index }: { skill: any; index: number }) {
         }}
         className="group relative h-full bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-purple-100/50 dark:border-white/10 hover:border-purple-500/50 dark:hover:border-purple-500/50 transition-all duration-300 hover:shadow-xl dark:hover:shadow-purple-500/10"
       >
-        <div
+        <motion.div
           className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           style={{
             background: useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.15), transparent 80%)`
