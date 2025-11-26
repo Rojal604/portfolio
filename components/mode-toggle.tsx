@@ -8,13 +8,19 @@ import { motion } from "framer-motion"
 export function ModeToggle() {
     const { setTheme, theme } = useTheme()
 
+    const [isTransitioning, setIsTransitioning] = React.useState(false)
+
     const toggleTheme = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (isTransitioning) return
+        setIsTransitioning(true)
+
         const isDark = theme === "dark"
         const nextTheme = isDark ? "light" : "dark"
 
         // @ts-ignore - View Transitions API is not yet in all TS definitions
         if (!document.startViewTransition) {
             setTheme(nextTheme)
+            setIsTransitioning(false)
             return
         }
 
@@ -34,7 +40,7 @@ export function ModeToggle() {
         // @ts-ignore
         await transition.ready
 
-        document.documentElement.animate(
+        const animation = document.documentElement.animate(
             {
                 clipPath: [
                     `circle(0px at ${x}px ${y}px)`,
@@ -48,6 +54,10 @@ export function ModeToggle() {
                 pseudoElement: "::view-transition-new(root)",
             }
         )
+
+        animation.onfinish = () => {
+            setIsTransitioning(false)
+        }
     }
 
     return (
