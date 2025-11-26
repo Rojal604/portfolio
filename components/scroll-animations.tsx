@@ -6,13 +6,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
-import { useIsMobile } from "@/components/ui/use-mobile"
-
 export default function ScrollAnimations() {
   const [mounted, setMounted] = useState(false)
   const scrollTriggersRef = useRef<ScrollTrigger[]>([])
   const observerRef = useRef<MutationObserver | null>(null)
-  const isMobile = useIsMobile()
 
   useEffect(() => {
     setMounted(true)
@@ -198,7 +195,7 @@ export default function ScrollAnimations() {
     }
   }, [mounted])
 
-  if (!mounted || isMobile) return null
+  if (!mounted) return null
 
   return null
 }
