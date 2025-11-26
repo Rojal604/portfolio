@@ -2,7 +2,7 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Sphere, MeshDistortMaterial, Float, Environment, Sparkles } from "@react-three/drei"
+import { Sphere, MeshDistortMaterial, Float, Environment, Sparkles, AdaptiveDpr, AdaptiveEvents } from "@react-three/drei"
 import { EffectComposer, Bloom, ChromaticAberration, Vignette } from "@react-three/postprocessing"
 import { BlendFunction } from "postprocessing"
 import type * as THREE from "three"
@@ -112,6 +112,9 @@ export default function HeroScene() {
         <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={[0.001, 0.001] as [number, number]} />
         <Vignette eskil={false} offset={0.1} darkness={0.5} />
       </EffectComposer>
+
+      <AdaptiveDpr pixelated />
+      <AdaptiveEvents />
     </>
   )
 }

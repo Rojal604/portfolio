@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Box, Sphere, Torus, Float, MeshDistortMaterial, Icosahedron } from "@react-three/drei"
+import { Box, Sphere, Torus, Float, MeshDistortMaterial, Icosahedron, AdaptiveDpr, AdaptiveEvents } from "@react-three/drei"
 import type * as THREE from "three"
 
 export default function AboutScene() {
@@ -70,6 +70,8 @@ export default function AboutScene() {
           />
         </Icosahedron>
       </Float>
+      <AdaptiveDpr pixelated />
+      <AdaptiveEvents />
     </group>
   )
 }
