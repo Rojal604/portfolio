@@ -7,11 +7,13 @@ import { EffectComposer, Bloom, ChromaticAberration, Vignette } from "@react-thr
 import { BlendFunction } from "postprocessing"
 import type * as THREE from "three"
 import * as THREE_NS from "three"
+import { useIsMobile } from "@/components/ui/use-mobile"
 
 export default function HeroScene() {
   const sphereRef = useRef<THREE.Mesh>(null)
   const particlesRef = useRef<THREE.Points>(null)
   const torusRef = useRef<THREE.Mesh>(null)
+  const isMobile = useIsMobile()
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime()
@@ -33,7 +35,7 @@ export default function HeroScene() {
   })
 
   // Create particles with better distribution
-  const particlesCount = 1500
+  const particlesCount = isMobile ? 400 : 1500
   const positions = useMemo(() => {
     const pos = new Float32Array(particlesCount * 3)
     for (let i = 0; i < particlesCount * 3; i += 3) {
@@ -106,12 +108,14 @@ export default function HeroScene() {
       {/* Sparkles for extra magic */}
       <Sparkles count={100} scale={10} size={2} speed={0.4} color="#8b5cf6" />
 
-      {/* Post-processing effects */}
-      <EffectComposer>
-        <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} height={300} intensity={1.5} />
-        <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={[0.001, 0.001] as [number, number]} />
-        <Vignette eskil={false} offset={0.1} darkness={0.5} />
-      </EffectComposer>
+      {/* Post-processing effects - disabled on mobile for performance */}
+      {!isMobile && (
+        <EffectComposer>
+          <Bloom luminanceThreshold={0.2} luminanceSmoothing={0.9} height={300} intensity={1.5} />
+          <ChromaticAberration blendFunction={BlendFunction.NORMAL} offset={[0.001, 0.001] as [number, number]} />
+          <Vignette eskil={false} offset={0.1} darkness={0.5} />
+        </EffectComposer>
+      )}
 
       <AdaptiveDpr pixelated />
       <AdaptiveEvents />

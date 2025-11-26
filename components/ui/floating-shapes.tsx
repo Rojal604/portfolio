@@ -1,8 +1,12 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useIsMobile } from "@/components/ui/use-mobile"
 
 export const FloatingShapes = () => {
+    const isMobile = useIsMobile()
+    if (isMobile) return null
+
     return (
         <div
             className="absolute inset-0 overflow-hidden pointer-events-none -z-10"
