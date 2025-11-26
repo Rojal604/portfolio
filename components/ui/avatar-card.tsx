@@ -95,7 +95,7 @@ export default function AvatarCard({
             )}
 
             <div
-                className="relative overflow-hidden rounded-2xl shadow-2xl preserve-3d transition-all duration-100 ease-out will-change-transform"
+                className={`relative overflow-hidden rounded-2xl shadow-2xl preserve-3d transition-all duration-100 ease-out will-change-transform ${disableTilt ? 'animate-float' : ''}`}
                 style={{
                     width: imageWidth,
                     height: imageHeight,
