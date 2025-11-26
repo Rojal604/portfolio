@@ -5,16 +5,19 @@ import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import Lenis from "lenis"
 
+import { useIsMobile } from "@/components/ui/use-mobile"
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
   const [mounted, setMounted] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
+    if (!mounted || isMobile) return
 
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -36,7 +39,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     return () => {
       lenis.destroy()
     }
-  }, [mounted])
+  }, [mounted, isMobile])
 
   if (!mounted) return <>{children}</>
 

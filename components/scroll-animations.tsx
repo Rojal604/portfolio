@@ -6,10 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
+import { useIsMobile } from "@/components/ui/use-mobile"
+
 export default function ScrollAnimations() {
   const [mounted, setMounted] = useState(false)
   const scrollTriggersRef = useRef<ScrollTrigger[]>([])
   const observerRef = useRef<MutationObserver | null>(null)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     setMounted(true)
@@ -41,16 +44,16 @@ export default function ScrollAnimations() {
     // Animate cards with stagger (skip cards already handled by Framer Motion)
     gsap.utils.toArray<HTMLElement>(".animate-card").forEach((card) => {
       // Skip cards that are wrapped in RevealOnScroll or motion.div (Framer Motion handles these)
-      const isFramerMotionAnimated = card.closest('[data-framer-motion]') || 
-                                   card.closest('.motion-div') ||
-                                   card.parentElement?.classList.contains('motion-div') ||
-                                   card.parentElement?.closest('[data-framer-motion]')
-      
+      const isFramerMotionAnimated = card.closest('[data-framer-motion]') ||
+        card.closest('.motion-div') ||
+        card.parentElement?.classList.contains('motion-div') ||
+        card.parentElement?.closest('[data-framer-motion]')
+
       if (isFramerMotionAnimated) {
         // Skip GSAP animation for Framer Motion cards
         return
       }
-      
+
       // Only animate cards that aren't handled by Framer Motion
       const tl = gsap.from(card, {
         scrollTrigger: {
@@ -87,16 +90,16 @@ export default function ScrollAnimations() {
     // Skill bars animation (skip bars already handled by Framer Motion)
     gsap.utils.toArray<HTMLElement>(".skill-bar").forEach((bar) => {
       // Skip skill bars that are already animated by Framer Motion
-      const isFramerMotionAnimated = bar.closest('[data-framer-motion]') || 
-                                   bar.closest('.motion-div') ||
-                                   bar.parentElement?.classList.contains('motion-div') ||
-                                   bar.parentElement?.closest('[data-framer-motion]')
-      
+      const isFramerMotionAnimated = bar.closest('[data-framer-motion]') ||
+        bar.closest('.motion-div') ||
+        bar.parentElement?.classList.contains('motion-div') ||
+        bar.parentElement?.closest('[data-framer-motion]')
+
       if (isFramerMotionAnimated) {
         // Skip GSAP animation for Framer Motion skill bars
         return
       }
-      
+
       // Only animate skill bars that aren't handled by Framer Motion
       const width = bar.getAttribute("data-width")
       const tl = gsap.from(bar, {
@@ -172,7 +175,7 @@ export default function ScrollAnimations() {
           })
         }
       })
-      
+
       if (shouldRefresh) {
         // Debounce the refresh to avoid too many calls
         setTimeout(initializeScrollTriggers, 200)
@@ -195,7 +198,7 @@ export default function ScrollAnimations() {
     }
   }, [mounted])
 
-  if (!mounted) return null
+  if (!mounted || isMobile) return null
 
   return null
 }
