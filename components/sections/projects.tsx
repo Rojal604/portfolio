@@ -7,6 +7,7 @@ import RevealOnScroll from "@/components/reveal-on-scroll"
 import { GlowCard } from "@/components/ui/glow-card"
 import { SectionBackground } from "@/components/ui/section-background"
 import { useIsMobile } from "@/components/ui/use-mobile"
+import { getAssetPath } from "@/lib/utils"
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
@@ -19,7 +20,7 @@ export default function Projects() {
       title: "E-commerce Platform",
       description: "A modern, full-stack e-commerce solution featuring real-time inventory management, secure payment processing, and an intuitive admin dashboard.",
       tech: ["Next.js", "Stripe", "Prisma", "Tailwind CSS"],
-      image: "/ecommerce-platform.png",
+      image: getAssetPath("/ecommerce-platform.png"),
       demo: "https://rojal604.github.io/project-5/",
       github: "#",
       highlights: ["Secure Stripe Integration", "Real-time Inventory", "Admin Dashboard", "Responsive Design"],
@@ -28,7 +29,7 @@ export default function Projects() {
       title: "Restaurant Website",
       description: "A stunning restaurant website with online reservation system, interactive menu, and seamless ordering experience. Features beautiful food photography and smooth animations.",
       tech: ["React", "Node.js", "MongoDB", "Express.js"],
-      image: "/restaurant-website.png",
+      image: getAssetPath("/restaurant-website.png"),
       demo: "https://rojal604.github.io/project-3/",
       github: "#",
       highlights: ["Online Reservations", "Interactive Menu", "Order Management", "Mobile Responsive"],
@@ -37,7 +38,7 @@ export default function Projects() {
       title: "Corporate Business Website",
       description: "Professional corporate website featuring company portfolio, team profiles, and client testimonials. Built with modern design principles and optimized for conversions.",
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "Sanity CMS"],
-      image: "/corporate-website.png",
+      image: getAssetPath("/corporate-website.png"),
       demo: "https://rojal604.github.io/project-4/",
       github: "#",
       highlights: ["SEO Optimized", "CMS Integration", "Contact Forms", "Performance Focused"],
@@ -46,7 +47,7 @@ export default function Projects() {
       title: "Portfolio Website",
       description: "A creative portfolio website showcasing projects with smooth animations, interactive elements, and modern design. Features project filtering, contact form, and responsive layout.",
       tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-      image: "/portfolio-website.png",
+      image: getAssetPath("/portfolio-website.png"),
       demo: "https://rojal604.github.io/project-2/",
       github: "#",
       highlights: ["Smooth Animations", "Project Filtering", "Contact Integration", "Fast Performance"],
@@ -153,7 +154,7 @@ export default function Projects() {
                       <div className="aspect-[4/3] overflow-hidden relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
                         <motion.img
-                          src={project.image || "/placeholder.svg"}
+                          src={project.image || getAssetPath("/placeholder.svg")}
                           alt={project.title}
                           className="w-full h-full object-cover"
                           whileHover={{ scale: 1.1 }}
@@ -216,7 +217,7 @@ export default function Projects() {
                 <div className="grid lg:grid-cols-2 gap-0">
                   <div className="relative h-56 sm:h-64 lg:h-auto lg:min-h-[400px]">
                     <img
-                      src={projects[selectedProject].image || "/placeholder.svg"}
+                      src={projects[selectedProject].image || getAssetPath("/placeholder.svg")}
                       alt={projects[selectedProject].title}
                       className="absolute inset-0 w-full h-full object-cover"
                     />

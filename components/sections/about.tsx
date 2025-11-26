@@ -6,6 +6,7 @@ import AvatarCard from "@/components/ui/avatar-card"
 import { Code2, Rocket, Sparkles, Zap } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import BlurText from "@/components/ui/blur-text"
+import { getAssetPath } from "@/lib/utils"
 
 export default function About() {
   const containerRef = useRef<HTMLElement>(null)
@@ -153,7 +154,7 @@ export default function About() {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-full blur-[100px] -z-10" />
             <AvatarCard
-              imageSrc="/avatar.png"
+              imageSrc={getAssetPath("/avatar.png")}
               altText="Digital Avatar"
               captionText="Hover to interact! 🎮"
               containerHeight="450px"
