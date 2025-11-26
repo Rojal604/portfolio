@@ -22,6 +22,9 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["framer-motion", "lucide-react"],
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: process.env.NODE_ENV === 'production' ? '/portfolio' : '',
+  },
 }
 
 export default nextConfig
